@@ -22,10 +22,7 @@ export function Navigation() {
         return null;
     }
 
-    // Hide navigation if starts with admin path
-    if (location.pathname.startsWith('/1234/admin')) {
-        return null;
-    }
+    const isChatPage = location.pathname.startsWith('/chat/');
 
     return (
         <>
@@ -145,22 +142,24 @@ export function Navigation() {
             </aside>
 
             {/* Mobile Bottom Navigation */}
-            <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 safe-area-bottom">
-                <div className="flex items-center justify-around py-2 px-4">
-                    {navItems.map((item) => (
-                        <NavLink
-                            key={item.path}
-                            to={item.path}
-                            className={({ isActive }) => `
-                nav-item flex-1 ${isActive && 'nav-item-active'}
-              `}
-                        >
-                            <item.icon size={24} />
-                            <span className="text-xs">{item.label}</span>
-                        </NavLink>
-                    ))}
-                </div>
-            </nav>
+            {!isChatPage && (
+                <nav className="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 safe-area-bottom">
+                    <div className="flex items-center justify-around py-2 px-4">
+                        {navItems.map((item) => (
+                            <NavLink
+                                key={item.path}
+                                to={item.path}
+                                className={({ isActive }) => `
+                    nav-item flex-1 ${isActive && 'nav-item-active'}
+                  `}
+                            >
+                                <item.icon size={24} />
+                                <span className="text-xs">{item.label}</span>
+                            </NavLink>
+                        ))}
+                    </div>
+                </nav>
+            )}
         </>
     );
 }

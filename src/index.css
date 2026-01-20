@@ -52,6 +52,10 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
 }
 
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 /* Button Styles */
 .btn-primary {
   background-color: var(--color-primary-500);
